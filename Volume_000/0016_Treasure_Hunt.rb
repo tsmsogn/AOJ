@@ -9,4 +9,4 @@ while line = gets
   a -= d
 end
 
-puts "#{x.to_i}\n#{y.to_i}"
+puts x.to_i, y.to_i
