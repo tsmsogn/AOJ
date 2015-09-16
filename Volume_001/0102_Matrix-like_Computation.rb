@@ -20,7 +20,7 @@ while n = gets.chomp.to_i
   a = a.transpose
 
   a.each do |i|
-    puts i.map { |item| sprintf('%5d', item) }.join()
+    puts i.map { |item| sprintf('%5d', item) }.join
   end
 
 end
