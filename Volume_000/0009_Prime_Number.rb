@@ -1,5 +1,6 @@
-def primes(max)
-  nums = (2..max).each_with_object({}) { |num, hash| hash[num] = 1 }
+def count_primes(max)
+  nums = Array.new(max + 1, 1)
+  nums[0] = nums[1] = 0
 
   (2..Math.sqrt(max)).each do |sieve|
     if nums[sieve] == 1
@@ -9,10 +10,10 @@ def primes(max)
     end
   end
 
-  nums.select { |key, value| value == 1 }.keys.to_a
+  nums.select { |num| num == 1 }.size
 end
 
 while line = gets
   n = line.chomp.to_i
-  puts primes(n).size
+  puts count_primes(n)
 end
