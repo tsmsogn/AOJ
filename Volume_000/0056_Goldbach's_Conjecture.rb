@@ -17,15 +17,18 @@ max = 50_000
 
 primes = primes(max)
 
+nums = (2..max).select { |num| primes[num] == 1 }
+
 while line = gets
   n = line.chomp.to_i
   break if n == 0
 
   answer = 0
 
-  for i in 2..(n / 2)
+  for i in nums
     j = n - i
-    answer += 1 if primes[i] == 1 && primes[j] == 1
+    break if i > j
+    answer += 1 if primes[j] == 1
   end
 
   puts answer
