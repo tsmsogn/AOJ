@@ -1,43 +1,24 @@
-# Field
-module Field
-  def self.calc(grid, n)
-    answer = -Float::INFINITY
+n = gets.chomp.to_i
 
-    for i in 0...n
-      for j in 0...n
-        if i > 0 && j > 0
-          grid[i][j] += grid[i - 1][j] + grid[i][j - 1] - grid[i - 1][j - 1]
-        elsif i > 0
-          grid[i][j] += grid[i - 1][j]
-        elsif j > 0
-          grid[i][j] += grid[i][j - 1]
-        end
-      end
-    end
+dp = Array.new(n + 1) { Array.new(n + 1, 0) }
 
-    for i in 0...n
-      for j in 0...n
-        for k in 0..i
-          for l in 0..j
-            a = (k > 0) ? grid[k - 1][j] : 0
-            b = (l > 0) ? grid[i][l - 1] : 0
-            c = (k > 0 && l > 0) ? grid[k - 1][l - 1] : 0
-            answer = [answer, grid[i][j] - a - b + c].max
-          end
-        end
-      end
-    end
-
-    answer
+n.times do |y|
+  row = gets.chomp.split.map(&:to_i)
+  n.times do |x|
+    dp[y + 1][x + 1] = dp[y + 1][x] + dp[y][x + 1] - dp[y][x] + row[x]
   end
 end
 
-grid = []
+answer = -Float::INFINITY
 
-n = gets.chomp.to_i
-
-n.times do
-  grid << gets.chomp.split.map(&:to_i)
+for i in 1..n
+  for j in 1..n
+    for k in 1..i
+      for l in 1..j
+        answer = [answer, dp[i][j] - dp[k - 1][j] - dp[i][l - 1] + dp[k - 1][l - 1]].max
+      end
+    end
+  end
 end
 
-puts Field.calc(grid, n)
+puts answer
