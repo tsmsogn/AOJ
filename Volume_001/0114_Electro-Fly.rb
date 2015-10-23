@@ -6,11 +6,23 @@ while line = gets
   i = 0
   loop do
     x = a1 * x % m1
-    y = a2 * y % m2
-    z = a3 * z % m3
     i += 1
-    break if x == 1 && y == 1 && z == 1
+    break if x == 1
   end
 
-  puts i
+  j = 0
+  loop do
+    y = a2 * y % m2
+    j += 1
+    break if y == 1
+  end
+
+  k = 0
+  loop do
+    z = a3 * z % m3
+    k += 1
+    break if z == 1
+  end
+
+  puts k.lcm(j.lcm(i))
 end
