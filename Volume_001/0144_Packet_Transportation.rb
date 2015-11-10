@@ -70,5 +70,5 @@ p.times do
   clone = Marshal.load(Marshal.dump(data))
   dijkstra = Dijkstra.new(clone)
   dijkstra.start(s)
-  puts (dijkstra.nodes[d].cost + 1 <= v) ? dijkstra.nodes[d].cost + 1 : :NA
+  puts (dijkstra.nodes[d].cost != -1 && dijkstra.nodes[d].cost + 1 <= v) ? dijkstra.nodes[d].cost + 1 : :NA
 end
