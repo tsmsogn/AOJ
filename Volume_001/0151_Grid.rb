@@ -41,10 +41,10 @@ def get_max_length(grid, n)
     end
   end
 
-  for i in 0..(n * 2 - 2)
+  for i in -(n - 1)..(n - 1)
     length = 0
     x = 0
-    y = n - 1 - i - x
+    y = i + x
     while x < n && y < n
       if y >= 0 && grid[y][x] == 1
         length += 1
@@ -52,8 +52,8 @@ def get_max_length(grid, n)
       else
         length = 0
       end
-      y += 1
       x += 1
+      y += 1
     end
   end
 
