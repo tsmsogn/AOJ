@@ -11,11 +11,10 @@ while line = gets
     card = cards[i]
     for j in 0...22
       if card == 1
-        dp[i + 1][j] = dp[i][j - 1] if j - 1 >= 0 && j - card < 22
-        dp[i + 1][j] = dp[i][j - 11] if j - 11 >= 0 && j - card < 22
-      elsif card > 10
-        dp[i + 1][j] = dp[i][j - 10] if j - 10 >= 0 && j - card < 22
+        dp[i + 1][j] = [dp[i + 1][j], dp[i][j - 1]].max if j - 1 >= 0 && j - 1 < 22
+        dp[i + 1][j] = [dp[i + 1][j], dp[i][j - 11]].max if j - 11 >= 0 && j - 11 < 22
       else
+        card = 10 if card > 10
         dp[i + 1][j] = dp[i][j - card] if j - card >= 0 && j - card < 22
       end
     end
