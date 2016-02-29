@@ -13,17 +13,22 @@ while line = gets
   end
 
   dolls.sort! do |a, b|
-    a[0] * a[1] <=> b[0] * b[1]
-  end
-
-  i = 1
-  until i == dolls.size
-    if dolls[i - 1][0] < dolls[i][0] && dolls[i - 1][1] < dolls[i][1]
-      i += 1
+    if a[0] == b[0]
+      a[1] <=> b[1]
     else
-      dolls.delete_at(i)
+      a[0] <=> b[0]
     end
   end
 
-  puts i
+  dp = Array.new(dolls.size + 1, 0)
+
+  for i in 1..dolls.size
+    for j in 1..i
+      if i - j == 0 || (dolls[i - 1][0] > dolls[i - j - 1][0] && dolls[i - 1][1] > dolls[i - j - 1][1])
+        dp[i] = [dp[i], dp[i - j] + 1].max
+      end
+    end
+  end
+
+  puts dp.max
 end
