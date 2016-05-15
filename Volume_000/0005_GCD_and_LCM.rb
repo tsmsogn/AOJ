@@ -1,15 +1,14 @@
 def gcd(a, b)
   a, b = b, a if a < b
-  mod = a % b
-  if mod == 0
-    b
+  if b == 0
+    a
   else
-    gcd(b, mod)
+    gcd(b, a % b)
   end
 end
 
 def lcm(a, b)
-  a * b / gcd(a, b)
+  a / gcd(a, b) * b
 end
 
 while line = gets
