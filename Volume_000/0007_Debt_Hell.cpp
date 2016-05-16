@@ -10,7 +10,7 @@ int main() {
 
     cin >> n;
 
-    for (int i = 0; i < n; i++) {
+    while (n--) {
         debt = ceil(debt * 1.05 / 1000) * 1000;
     }
 
