@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -11,7 +12,7 @@ void primes() {
     
     p[0] = p[1] = false;
     
-    for (int i = 2; i < 1000001; i++) {
+    for (int i = 2; i < sqrt(1000001); i++) {
         if (p[i]) {
             for (int j = i * 2; j < 1000001; j += i) {
                 p[j] = false;
