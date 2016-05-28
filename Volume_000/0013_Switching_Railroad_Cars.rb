@@ -1,11 +1,11 @@
-a = []
+stack = []
 
 while line = gets
   n = line.chomp.to_i
 
   if n == 0
-    puts a.pop
+    puts stack.pop
   else
-    a << n
+    stack << n
   end
 end
